@@ -3,7 +3,15 @@ INTRODUCTION
 
 This project is designed to work with data in a distributed environment. The main is goal of the project is to work on a simulated lacrosse game stream, and a database of player and team reference data and create a data pipeline that processes the game stream, creates a box score and updates the database tables when the game is over.
 
-# The Environment Setup
+# The Problem
+
+The objective is to create a data pipeline which processes a simplified version of an in-game stream from a simulated a lacrosse game. The game stream has been simplified to only process goals scored. There are two parts to this problem:
+
+* At any point while the game is in progress, the game stream should be converted into a JSON format so the web developers can use it to create a box score page on a website. This JSON should be written to the mongodb/sidearm/boxscores collection, and should contain all the data necessary to display the box score page from a single query to the database.
+  
+* When the game is over, the player and team reference data should be updated to reflect the team records and player statistics after the competition has ended. Normally you would update the mssql tables, but for this project I will create new tables with the updated data, players2 and teams2 respectively. This is mostly because spark does not support row-level updates.
+
+# The Environment Setup and Tools Used
 
 A environment which has a docker-compose.yaml file that stimulates the distributed environment, it consists of the following services:
 
@@ -115,13 +123,7 @@ PS> docker-compose up -d gamestream
 
 NOTE: You can always docker-compose down everything and bring it back up with docker-compose up -d too.
 
-# The Problem
 
-The objective is to create a data pipeline which processes a simplified version of an in-game stream from a simulated a lacrosse game. The game stream has been simplified to only process goals scored. There are two parts to this problem:
-
-* At any point while the game is in progress, the game stream should be converted into a JSON format so the web developers can use it to create a box score page on a website. This JSON should be written to the mongodb/sidearm/boxscores collection, and should contain all the data necessary to display the box score page from a single query to the database.
-  
-* When the game is over, the player and team reference data should be updated to reflect the team records and player statistics after the competition has ended. Normally you would update the mssql tables, but for this project I will create new tables with the updated data, players2 and teams2 respectively. This is mostly because spark does not support row-level updates.
   
 # Game Stream
 
