@@ -1,4 +1,4 @@
-# Data Pipeline for live lacrosse game stream
+# Data Pipeline for Live Lacrosse Gamestream
 
 Introduction
 
