@@ -1,4 +1,4 @@
-# Big-Data-Data-Pipeline
+# Data Pipeline for live lacrosse game stream
 
 Introduction
 
